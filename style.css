@@ -7,46 +7,229 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #f4f4f4; /* Light gray background */
+    color: #333; /* Darker text color for readability */
     line-height: 1.6;
     padding: 20px;
+    display: flex; /* Use flexbox for body to center content later if needed */
+    flex-direction: column;
+    min-height: 100vh; /* Ensure body takes full viewport height */
 }
 
 /* Header */
 header {
-    background-color: #2c3e50;
+    background-color: #2c3e50; /* Dark blue/grey */
     color: white;
     padding: 30px 20px;
     text-align: center;
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    gap: 15px; /* Space between items in header */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+}
+
+.profile-image-container {
+    width: 120px; /* Increased size for impact */
+    height: 120px;
+    border-radius: 50%; /* Perfect circle */
+    overflow: hidden; /* Ensures image stays within the circle */
+    border: 4px solid #3498db; /* Vibrant border color */
+    box-shadow: 0 0 0 5px rgba(255,255,255,0.2), 0 5px 15px rgba(0,0,0,0.2); /* Dual shadow for pop */
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+.profile-image-container:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.profile-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crops and covers the area without distortion */
+    display: block; /* Removes extra space below image */
 }
 
 header h1 {
-    margin-bottom: 10px;
+    margin-bottom: 5px; /* Less space between name and tagline */
+    font-size: 2.5em; /* Larger heading */
+    letter-spacing: 1px; /* A little spacing for style */
+}
+
+header p {
+    font-size: 1.2em; /* Slightly larger tagline */
+    opacity: 0.9; /* Slightly transparent */
 }
 
 /* Sections */
 section {
     margin-bottom: 30px;
-    padding: 20px;
+    padding: 30px;
     background: #fff;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08); /* More pronounced shadow */
+    border-left: 6px solid #3498db; /* A vibrant accent border */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transitions */
+}
+
+section:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15); /* Stronger shadow on hover */
 }
 
 section h2 {
+    margin-bottom: 20px;
+    color: #3498db; /* Vibrant blue for headings */
+    font-size: 1.8em;
+    border-bottom: 2px solid #eee; /* Subtle underline effect */
+    padding-bottom: 10px;
+}
+
+section p {
     margin-bottom: 15px;
+    color: #555; /* Slightly softer text color for paragraphs */
+}
+
+/* Skills Section Specific */
+.skills .skill-category {
+    background-color: #f9f9f9; /* Light background for skill categories */
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #eee;
+    transition: background-color 0.3s ease;
+}
+
+.skills .skill-category:hover {
+    background-color: #eef; /* Slight blue tint on hover */
+}
+
+.skills h3 {
+    color: #2c3e50; /* Darker heading for categories */
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.skills ul {
+    list-style: none; /* Remove default bullets */
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap; /* Allow skills to wrap */
+    gap: 10px; /* Space between skill items */
+}
+
+.skills li {
+    background-color: #e0f2f7; /* Light blue background for each skill */
     color: #2c3e50;
+    padding: 8px 15px;
+    border-radius: 20px; /* Pill-shaped tags */
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.skills li:hover {
+    background-color: #3498db; /* Darker blue on hover */
+    color: white;
+}
+
+/* Projects Section Specific */
+.projects .project-item {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.projects .project-item:hover {
+    background-color: #eef;
+    transform: translateY(-3px); /* Subtle lift on hover */
+}
+
+.projects h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.projects p {
+    margin-bottom: 8px;
+}
+
+.projects a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.projects a:hover {
+    text-decoration: underline;
+}
+
+/* Contact and Footer Links */
+.contact ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.contact li {
+    margin-bottom: 10px;
+}
+
+.contact a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact a:hover {
+    text-decoration: underline;
 }
 
 /* Footer */
 footer {
     text-align: center;
-    padding: 15px;
-    margin-top: 20px;
-    background-color: #2c3e50;
+    padding: 20px;
+    margin-top: auto; /* Push footer to the bottom */
+    background-color: #2c3e50; /* Same dark blue/grey as header */
     color: white;
     border-radius: 10px;
+    font-size: 0.9em;
+    box-shadow: 0 -3px 10px rgba(0,0,0,0.05); /* Subtle shadow on top */
+}
+
+/* Responsive Design (Basic) */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    header {
+        padding: 25px 15px;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    header p {
+        font-size: 1em;
+    }
+
+    section {
+        padding: 20px;
+    }
+
+    section h2 {
+        font-size: 1.5em;
+    }
+
+    .profile-image-container {
+        width: 100px;
+        height: 100px;
+    }
 }
