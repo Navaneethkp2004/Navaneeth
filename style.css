@@ -1,3 +1,16 @@
+/* CSS Variables for JavaScript Control */
+:root {
+    --bg-color: #f4f4f4;
+    --text-color: #333333;
+    --accent-color: #3498db;
+    --header-footer-bg-color: #2c3e50;
+    --wave-color: #ffffff; /* Default wave color */
+    --star-color: #ffffff; /* Default star color */
+    --section-bg-color: #ffffff;
+    --section-border-color: #eee;
+}
+
+
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -7,94 +20,124 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f4f4; /* Light gray background */
-    color: #333; /* Darker text color for readability */
+    background-color: var(--bg-color); /* Use CSS variable */
+    color: var(--text-color); /* Use CSS variable */
     line-height: 1.6;
     padding: 20px;
-    display: flex; /* Use flexbox for body to center content later if needed */
+    display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ensure body takes full viewport height */
+    min-height: 100vh;
+    position: relative; /* Needed for absolutely positioned star canvas */
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
+
+/* Star Canvas */
+#starCanvas {
+    position: fixed; /* Fixed position relative to viewport */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Behind all content */
+    pointer-events: none; /* Allows clicks to pass through */
+}
+
 
 /* Header */
 header {
-    background-color: #2c3e50; /* Dark blue/grey */
+    background-color: var(--header-footer-bg-color); /* Use CSS variable */
     color: white;
     padding: 30px 20px;
     text-align: center;
     border-radius: 10px;
     margin-bottom: 30px;
-    display: flex; /* Enable flexbox */
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center items horizontally */
-    gap: 15px; /* Space between items in header */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    position: relative; /* Needed for absolutely positioned wave canvas */
+    overflow: hidden; /* Hide overflowing wave parts */
+}
+
+/* Wave Canvas */
+#waveCanvas {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px; /* Adjust height as needed */
+    z-index: 0; /* Below text, above header background */
+}
+
+header h1 {
+    margin-bottom: 5px;
+    font-size: 2.5em;
+    letter-spacing: 1px;
+    z-index: 1; /* Ensure text is above wave */
+}
+
+header p {
+    font-size: 1.2em;
+    opacity: 0.9;
+    z-index: 1; /* Ensure text is above wave */
 }
 
 .profile-image-container {
-    width: 120px; /* Increased size for impact */
+    width: 120px;
     height: 120px;
-    border-radius: 50%; /* Perfect circle */
-    overflow: hidden; /* Ensures image stays within the circle */
-    border: 4px solid #3498db; /* Vibrant border color */
-    box-shadow: 0 0 0 5px rgba(255,255,255,0.2), 0 5px 15px rgba(0,0,0,0.2); /* Dual shadow for pop */
-    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--accent-color); /* Use CSS variable */
+    box-shadow: 0 0 0 5px rgba(255,255,255,0.2), 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1; /* Ensure image is above wave */
 }
 
 .profile-image-container:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
+    transform: scale(1.05);
 }
 
 .profile-image-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Crops and covers the area without distortion */
-    display: block; /* Removes extra space below image */
+    object-fit: cover;
+    display: block;
 }
 
-header h1 {
-    margin-bottom: 5px; /* Less space between name and tagline */
-    font-size: 2.5em; /* Larger heading */
-    letter-spacing: 1px; /* A little spacing for style */
-}
-
-header p {
-    font-size: 1.2em; /* Slightly larger tagline */
-    opacity: 0.9; /* Slightly transparent */
-}
 
 /* Sections */
 section {
     margin-bottom: 30px;
     padding: 30px;
-    background: #fff;
+    background: var(--section-bg-color); /* Use CSS variable */
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08); /* More pronounced shadow */
-    border-left: 6px solid #3498db; /* A vibrant accent border */
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transitions */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    border-left: 6px solid var(--accent-color); /* Use CSS variable */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 section:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15); /* Stronger shadow on hover */
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
 section h2 {
     margin-bottom: 20px;
-    color: #3498db; /* Vibrant blue for headings */
+    color: var(--accent-color); /* Use CSS variable */
     font-size: 1.8em;
-    border-bottom: 2px solid #eee; /* Subtle underline effect */
+    border-bottom: 2px solid var(--section-border-color); /* Use CSS variable */
     padding-bottom: 10px;
 }
 
 section p {
     margin-bottom: 15px;
-    color: #555; /* Slightly softer text color for paragraphs */
+    color: var(--text-color); /* Use CSS variable */
 }
 
 /* Skills Section Specific */
 .skills .skill-category {
-    background-color: #f9f9f9; /* Light background for skill categories */
+    background-color: #f9f9f9;
     border-radius: 8px;
     padding: 15px;
     margin-bottom: 15px;
@@ -103,71 +146,36 @@ section p {
 }
 
 .skills .skill-category:hover {
-    background-color: #eef; /* Slight blue tint on hover */
+    background-color: #eef;
 }
 
 .skills h3 {
-    color: #2c3e50; /* Darker heading for categories */
+    color: var(--header-footer-bg-color); /* Use CSS variable */
     margin-bottom: 10px;
     font-size: 1.2em;
 }
 
 .skills ul {
-    list-style: none; /* Remove default bullets */
+    list-style: none;
     padding-left: 0;
     display: flex;
-    flex-wrap: wrap; /* Allow skills to wrap */
-    gap: 10px; /* Space between skill items */
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .skills li {
-    background-color: #e0f2f7; /* Light blue background for each skill */
-    color: #2c3e50;
+    background-color: #e0f2f7; /* Consider making this a variable too */
+    color: var(--header-footer-bg-color); /* Use CSS variable */
     padding: 8px 15px;
-    border-radius: 20px; /* Pill-shaped tags */
+    border-radius: 20px;
     font-size: 0.9em;
     font-weight: bold;
     transition: background-color 0.3s ease;
 }
 
 .skills li:hover {
-    background-color: #3498db; /* Darker blue on hover */
+    background-color: var(--accent-color); /* Use CSS variable */
     color: white;
-}
-
-/* Projects Section Specific */
-.projects .project-item {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    border: 1px solid #eee;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.projects .project-item:hover {
-    background-color: #eef;
-    transform: translateY(-3px); /* Subtle lift on hover */
-}
-
-.projects h3 {
-    color: #2c3e50;
-    margin-bottom: 10px;
-    font-size: 1.5em;
-}
-
-.projects p {
-    margin-bottom: 8px;
-}
-
-.projects a {
-    color: #3498db;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.projects a:hover {
-    text-decoration: underline;
 }
 
 /* Contact and Footer Links */
@@ -181,7 +189,7 @@ section p {
 }
 
 .contact a {
-    color: #3498db;
+    color: var(--accent-color); /* Use CSS variable */
     text-decoration: none;
     font-weight: bold;
 }
@@ -194,13 +202,82 @@ section p {
 footer {
     text-align: center;
     padding: 20px;
-    margin-top: auto; /* Push footer to the bottom */
-    background-color: #2c3e50; /* Same dark blue/grey as header */
+    margin-top: auto;
+    background-color: var(--header-footer-bg-color); /* Use CSS variable */
     color: white;
     border-radius: 10px;
     font-size: 0.9em;
-    box-shadow: 0 -3px 10px rgba(0,0,0,0.05); /* Subtle shadow on top */
+    box-shadow: 0 -3px 10px rgba(0,0,0,0.05);
 }
+
+/* Color Cycle Section */
+.color-cycle-section {
+    background-color: var(--section-bg-color);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+}
+
+.color-cycle-section h2 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--section-border-color);
+    padding-bottom: 10px;
+}
+
+.color-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.color-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.color-option label {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.color-option input[type="color"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 60px;
+    height: 60px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%; /* Make it circular */
+    overflow: hidden; /* Hide the default color picker border */
+    padding: 0; /* Remove padding */
+}
+
+.color-option input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.color-option input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%; /* Apply border-radius to the swatch itself */
+}
+
+.color-option input[type="color"]::-moz-color-swatch-wrapper {
+    padding: 0;
+}
+
+.color-option input[type="color"]::-moz-color-swatch {
+    border: none;
+    border-radius: 50%;
+}
+
 
 /* Responsive Design (Basic) */
 @media (max-width: 768px) {
@@ -231,5 +308,9 @@ footer {
     .profile-image-container {
         width: 100px;
         height: 100px;
+    }
+
+    .color-options {
+        flex-direction: column;
     }
 }
